@@ -399,6 +399,87 @@
             font-weight: 600;
         }
         
+        /* Impact Section */
+        .impact-section {
+            margin-top: 4rem;
+        }
+        
+        .impact-section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .impact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .impact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .impact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .impact-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+        
+        .impact-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+        
+        .impact-description strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .impact-tech {
+            background: var(--bg-secondary);
+            color: var(--text-muted);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
         .about-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -747,6 +828,11 @@
                 gap: 2rem;
             }
             
+            .impact-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
             .timeline-line {
                 left: 2rem;
             }
@@ -837,7 +923,7 @@
                 <h1 class="hero-title">신희성</h1>
                 <p class="hero-subtitle">시스템 품질 향상과 기록의 즐거움을 추구하는 개발자</p>
                 <p class="hero-description">
-                    1년 8개월 동안 4개의 라이브러리를 개발하여 팀 생산성을 94% 향상시킨 <strong>문제 해결 지향</strong> 백엔드 개발자입니다.
+                    1년 8개월 동안 4개의 라이브러리를 개발하여 보일러 플레이트를 94% 감소시키는 등 생상성을 향상시킨 <strong>문제 해결 지향</strong> 백엔드 개발자입니다.
                 </p>
             </div>
         </div>
@@ -855,7 +941,7 @@
                     <div class="section-badge">👋 About Me</div>
                     <h2 class="section-title">빠르게 배우고 빠르게 성과내는</h2>
                     <p class="section-subtitle">
-                        비전공자 출신으로 1년 8개월 만에 KSP, DSL, 헥사고날 아키텍처까지 습득한 개발자입니다.
+                        KSP, DSL, 헥사고날 아키텍처까지 실질적 문제 해결을 위한 도전과 배움을 즐기는 개발자입니다.
                     </p>
                 </div>
                 
@@ -881,20 +967,61 @@
                             <span class="stat-label">총 경력</span>
                         </div>
                         <div class="stat-card">
+                            <span class="stat-number">5개</span>
+                            <span class="stat-label">신규 프로젝트 경험</span>
+                        </div>
+                        <div class="stat-card">
                             <span class="stat-number">4개</span>
                             <span class="stat-label">라이브러리 개발</span>
                         </div>
                         <div class="stat-card">
                             <span class="stat-number">94%</span>
-                            <span class="stat-label">코드 감소율</span>
+                            <span class="stat-label">보일러 플레이트 감소율</span>
                         </div>
                         <div class="stat-card">
                             <span class="stat-number">2개</span>
                             <span class="stat-label">도메인 경험</span>
                         </div>
-                        <div class="stat-card">
-                            <span class="stat-number">5개</span>
-                            <span class="stat-label">신규 프로젝트 경험</span>
+                    </div>
+                </div>
+                
+                <!-- 주요 프로젝트 임팩트 섹션 -->
+                <div class="impact-section">
+                    <h3 class="impact-section-title">🚀 주요 프로젝트 임팩트</h3>
+                    <div class="impact-grid">
+                        <div class="impact-card">
+                            <div class="impact-icon">⚡</div>
+                            <h4 class="impact-title">리액티브 아키텍처 전환</h4>
+                            <p class="impact-description">블로킹 I/O에서 Non-blocking I/O로 전환하여 <strong>처리량 향상</strong></p>
+                            <div class="impact-tech">Spring WebFlux • Coroutine</div>
+                        </div>
+                        
+                        <div class="impact-card">
+                            <div class="impact-icon">🎯</div>
+                            <h4 class="impact-title">레거시 시스템 모던화</h4>
+                            <p class="impact-description">헥사고날 아키텍처 도입으로 <strong>결합도 감소</strong>, 유지보수성 향상</p>
+                            <div class="impact-tech">DDD • Clean Architecture</div>
+                        </div>
+                        
+                        <div class="impact-card">
+                            <div class="impact-icon">🔧</div>
+                            <h4 class="impact-title">개발 생산성 도구 구축</h4>
+                            <p class="impact-description">KSP 기반 코드 생성으로 <strong>보일러 플레이트 94% 단축</strong>, 개발자 만족도 향상</p>
+                            <div class="impact-tech">KSP • Metaprogramming</div>
+                        </div>
+                        
+                        <div class="impact-card">
+                            <div class="impact-icon">🌐</div>
+                            <h4 class="impact-title">크로스플랫폼 솔루션</h4>
+                            <p class="impact-description">JS Bridge 개발로 <strong>개발 비용 절약</strong>, 멀티플랫폼 지원 실현</p>
+                            <div class="impact-tech">Kotlin Multiplatform</div>
+                        </div>
+                        
+                        <div class="impact-card">
+                            <div class="impact-icon">📊</div>
+                            <h4 class="impact-title">실시간 데이터 처리</h4>
+                            <p class="impact-description">R2DBC와 리액티브 스트림으로 <strong>응답 시간 개선</strong></p>
+                            <div class="impact-tech">R2DBC • jOOQ Reactive</div>
                         </div>
                     </div>
                 </div>
@@ -908,7 +1035,7 @@
                     <div class="section-badge">💼 Experience</div>
                     <h2 class="section-title">경력 사항</h2>
                     <p class="section-subtitle">
-                        결제 솔루션부터 헬스케어까지, 빠른 도메인 적응력으로 성장해온 여정입니다.
+                        결제 솔루션부터 헬스케어까지, 빠른 학습력과 적응력으로 성장중인 여정입니다.
                     </p>
                 </div>
                 
@@ -922,7 +1049,7 @@
                             <h3 class="timeline-title">Backend Developer</h3>
                             <div class="timeline-company">비욘드메디슨</div>
                             <p class="timeline-desc">
-                                디지털 치료제 발행 및 추적을 위한 의료진용 대시보드 백엔드를 단독 개발 중입니다. 
+                                디지털 치료제 발행 및 추적을 위한 의료진용 대시보드 백엔드를 1인 개발 중입니다. 
                                 Spring WebFlux + Coroutine 기반 리액티브 시스템을 구축하고 있습니다.
                             </p>
                             <div class="tech-tags">
@@ -966,7 +1093,7 @@
                     <div class="section-badge">🛠️ Skills</div>
                     <h2 class="section-title">기술 스택</h2>
                     <p class="section-subtitle">
-                        메타프로그래밍부터 리액티브 프로그래밍까지, 고급 백엔드 기술을 다룹니다.
+                        메타프로그래밍부터 리액티브 프로그래밍까지, 다양한 백엔드 기술을 다룹니다.
                     </p>
                 </div>
                 
@@ -1048,12 +1175,12 @@
                             <h3 class="project-title">디지털 치료제 관리 서버</h3>
                             <div class="project-period">2025.04 - 현재</div>
                             <p class="project-description">
-                                디지털 치료제 발행 및 추적을 위한 의료진용 대시보드 백엔드를 <strong>단독 개발</strong> 중입니다. 
+                                디지털 치료제 발행 및 추적을 위한 의료진용 대시보드 백엔드를 1인 개발 중입니다. 
                                 Spring WebFlux와 Coroutine을 활용한 완전 리액티브 시스템을 구축하고 있습니다.
                             </p>
                         </div>
                         <div class="project-footer">
-                            <div class="project-impact">헬스케어 도메인 진출</div>
+                            <div class="project-impact">헬스케어로 도메인 전향</div>
                             <div class="tech-tags">
                                 <span class="tech-tag">Spring WebFlux</span>
                                 <span class="tech-tag">Coroutine</span>
@@ -1069,7 +1196,7 @@
                             <h3 class="project-title">멀티플랫폼 POS 아키텍처 설계</h3>
                             <div class="project-period">2024.09 - 2025.04</div>
                             <p class="project-description">
-                                헥사고날 아키텍처를 적용한 레거시 시스템 전환 프로젝트를 리딩했습니다. 
+                                헥사고날 아키텍처를 적용해 기존 레거시 아키텍처를 개선하고 전반적인 개발을 리딩했습니다. 
                                 Port & Adapter 패턴과 DDD 원칙 적용으로 비즈니스 로직 응집도를 향상시켰습니다.
                             </p>
                         </div>
@@ -1206,6 +1333,7 @@
                             <p class="project-description">
                                 멀티 데이터베이스 지원을 위한 Kotlin DSL 라이브러리. 
                                 하나의 코드로 SQLite, MS SQL 등 다양한 DB의 DDL 생성이 가능합니다.
+                                또한 작성한 DDL의 히스토리 관리를 통해 DB 마이그레이션을 지원합니다.
                             </p>
                         </div>
                         <div class="project-footer">
@@ -1494,7 +1622,7 @@
         });
 
         // Card hover effects
-        document.querySelectorAll('.project-card, .skill-category, .timeline-content').forEach(card => {
+        document.querySelectorAll('.project-card, .skill-category, .timeline-content, .impact-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-10px)';
             });
