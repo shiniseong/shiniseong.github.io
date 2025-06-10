@@ -309,12 +309,13 @@
         
         .scroll-indicator {
             position: absolute;
-            bottom: 2rem;
+            bottom: 5rem; /* 8rem에서 5rem으로 조정 */
             left: 50%;
             transform: translateX(-50%);
             color: white;
             opacity: 0.7;
             animation: bounce 2s infinite;
+            z-index: 20; /* main-content보다 높은 z-index */
         }
         
         @keyframes bounce {
@@ -677,6 +678,11 @@
             flex-wrap: wrap;
         }
         
+        /* Contact 섹션 하단 여백 추가 */
+        #contact {
+            padding-bottom: 10rem !important;
+        }
+        
         .contact-link {
             display: flex;
             align-items: center;
@@ -831,7 +837,7 @@
                 <h1 class="hero-title">신희성</h1>
                 <p class="hero-subtitle">시스템 품질 향상과 기록의 즐거움을 추구하는 개발자</p>
                 <p class="hero-description">
-                    1년 8개월 동안 4개의 라이브러리를 개발하여 팀 생산성을 94% 향상시킨 <strong>문제 해결 지향</strong> 백엔드 개발자입니다.
+                    1년 8개월 동안 4개의 라이브러리를 개발하여 보일러 플레이트를 94% 감소시키는 등, 생산성 향상 경험이 있는 <strong>문제 해결 지향</strong> 백엔드 개발자입니다.
                 </p>
             </div>
         </div>
@@ -1305,8 +1311,8 @@
         // Active section highlighting
         const sections = document.querySelectorAll('section[id]');
         const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '-80px 0px -50% 0px'
+            threshold: 0.1,
+            rootMargin: '-120px 0px -30% 0px'
         };
 
         const navObserver = new IntersectionObserver((entries) => {
@@ -1328,9 +1334,52 @@
             });
         }, observerOptions);
 
+        // Contact 섹션 특별 처리를 위한 추가 observer
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const scrollPosition = window.scrollY + window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // 페이지 하단 근처에 도달했을 때 Contact 활성화
+                if (scrollPosition >= documentHeight - 200) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    mobileNavLinks.forEach(link => link.classList.remove('active'));
+                    
+                    const contactNavLink = document.querySelector('.nav-link[data-section="contact"]');
+                    const contactMobileNavLink = document.querySelector('.mobile-nav-link[data-section="contact"]');
+                    
+                    if (contactNavLink) contactNavLink.classList.add('active');
+                    if (contactMobileNavLink) contactMobileNavLink.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // 스크롤 이벤트로 Contact 섹션 활성화 추가 체크
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            if (scrollPosition >= documentHeight - 100) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                mobileNavLinks.forEach(link => link.classList.remove('active'));
+                
+                const contactNavLink = document.querySelector('.nav-link[data-section="contact"]');
+                const contactMobileNavLink = document.querySelector('.mobile-nav-link[data-section="contact"]');
+                
+                if (contactNavLink) contactNavLink.classList.add('active');
+                if (contactMobileNavLink) contactMobileNavLink.classList.add('active');
+            }
+        });
+
         sections.forEach(section => {
             navObserver.observe(section);
         });
+
+        // Contact 섹션에 추가 observer 등록
+        const contactSection = document.querySelector('#contact');
+        if (contactSection) {
+            contactObserver.observe(contactSection);
+        }
 
         // Intersection Observer for scroll animations
         const animationObserver = new IntersectionObserver((entries) => {
@@ -1353,11 +1402,36 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
                 if (target) {
-                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    const navbarHeight = navbar.offsetHeight;
+                    
+                    // Hero 섹션으로 이동하는 경우
+                    if (targetId === '#hero') {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                        return;
+                    }
+                    
+                    // Contact 섹션은 페이지 끝까지 스크롤
+                    if (targetId === '#contact') {
+                        window.scrollTo({
+                            top: document.documentElement.scrollHeight - window.innerHeight,
+                            behavior: 'smooth'
+                        });
+                        return;
+                    }
+                    
+                    // 다른 섹션들은 getBoundingClientRect()로 정확한 위치 계산
+                    const rect = target.getBoundingClientRect();
+                    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const targetTop = rect.top + currentScrollTop - navbarHeight - 30; // 30px 추가 여백
+                    
                     window.scrollTo({
-                        top: offsetTop,
+                        top: Math.max(0, targetTop),
                         behavior: 'smooth'
                     });
                 }
