@@ -837,7 +837,7 @@
                 <h1 class="hero-title">신희성</h1>
                 <p class="hero-subtitle">시스템 품질 향상과 기록의 즐거움을 추구하는 개발자</p>
                 <p class="hero-description">
-                    1년 8개월 동안 4개의 라이브러리를 개발하여 보일러 플레이트를 94% 감소시키는 등, 생산성 향상 경험이 있는 <strong>문제 해결 지향</strong> 백엔드 개발자입니다.
+                    1년 8개월 동안 4개의 라이브러리를 개발하여 팀 생산성을 94% 향상시킨 <strong>문제 해결 지향</strong> 백엔드 개발자입니다.
                 </p>
             </div>
         </div>
@@ -877,7 +877,7 @@
                     
                     <div class="about-stats">
                         <div class="stat-card">
-                            <span class="stat-number">1년 8개월</span>
+                            <span class="stat-number" id="careerLength">계산중...</span>
                             <span class="stat-label">총 경력</span>
                         </div>
                         <div class="stat-card">
@@ -1277,6 +1277,42 @@
         const mobileMenu = document.getElementById('mobileMenu');
         const navLinks = document.querySelectorAll('.nav-link');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        // 경력 계산 함수
+        function calculateCareerLength() {
+            const startDate = new Date(2023, 7, 1); // 2023년 8월 1일 (월은 0부터 시작)
+            const currentDate = new Date();
+            
+            let years = currentDate.getFullYear() - startDate.getFullYear();
+            let months = currentDate.getMonth() - startDate.getMonth();
+            
+            // 월이 음수이면 연도에서 1을 빼고 월에 12를 더함
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            // 결과 포맷팅
+            let result = '';
+            if (years > 0) {
+                result += `${years}년`;
+                if (months > 0) {
+                    result += ` ${months}개월`;
+                }
+            } else {
+                result = `${months}개월`;
+            }
+            
+            return result;
+        }
+
+        // 페이지 로드 시 경력 계산
+        document.addEventListener('DOMContentLoaded', () => {
+            const careerElement = document.getElementById('careerLength');
+            if (careerElement) {
+                careerElement.textContent = calculateCareerLength();
+            }
+        });
 
         // Scroll behavior for navbar
         let lastScrollTop = 0;
