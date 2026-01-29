@@ -1,0 +1,14 @@
+<svg width="100%" height="100%" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <path d="M60,180 L60,100 C60,77.909 77.909,60 100,60 L156,60 C178.091,60 196,77.909 196,100 L196,180 C196,202.091 178.091,220 156,220 L100,220 C77.909,220 60,202.091 60,180 Z" style="fill:#333;stroke:black;stroke-width:12px;"/>
+
+    <rect x="92" y="30" width="20" height="40" style="fill:#555;stroke:black;stroke-width:8px;"/>
+    <rect x="144" y="30" width="20" height="40" style="fill:#555;stroke:black;stroke-width:8px;"/>
+
+    <path d="M105,35 L125,55 L115,75 L145,65 L135,95 L155,75" style="fill:none;stroke:#FFEB3B;stroke-width:14px;stroke-linejoin:miter;"/>
+    <path d="M105,35 L125,55 L115,75 L145,65 L135,95 L155,75" style="fill:none;stroke:white;stroke-width:6px;stroke-linejoin:miter;opacity:0.8;"/>
+
+    <circle cx="128" cy="140" r="25" style="fill:#FFEB3B;stroke:black;stroke-width:8px;"/>
+
+    <line x1="75" y1="180" x2="181" y2="180" style="stroke:#555;stroke-width:8px;"/>
+    <line x1="75" y1="200" x2="181" y2="200" style="stroke:#555;stroke-width:8px;"/>
+</svg>
